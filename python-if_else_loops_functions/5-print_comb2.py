@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import itertools
-for i, j in itertools.product(range(0, 10), range(0, 10)):
-    if i < 9 or j < 9:
-        print("{:d}{:d},".format(i, j), end=" ")
+for i in range(0, 100):
+    if i < 99:
+        print("{:02d},".format(i), end=" ")
     else:
-        print("{:d}{:d}".format(i, j))
+        print("{:02d}".format(i))
