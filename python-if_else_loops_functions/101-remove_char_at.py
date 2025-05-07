@@ -6,3 +6,4 @@ def remove_char_at(str, n):
             newStr += char
            # print("{}".format(char), end="")
         i = i + 1
+    return newStr
