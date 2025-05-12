@@ -4,3 +4,5 @@
 0-print_list_integer.py - Prints integers from a list.
 
 1-element_at.py - Retrieves an element from a list.
+
+2-replace_in_list - Replaces an element from a list.
