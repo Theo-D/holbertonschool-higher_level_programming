@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 def simple_delete(a_dictionary, key=""):
-    newDict = {}
-    for pair in a_dictionary:
-        if pair != key:
-            newDict[pair] = a_dictionary[pair]
-    if len(newDict) > 0:
-        return newDict
+    if key not in a_dictionary.keys():
+        return a_dictionary
     else:
+        del a_dictionary[key]
         return a_dictionary
