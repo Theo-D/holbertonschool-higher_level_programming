@@ -7,4 +7,5 @@ def print_matrix_integer(matrix=[[]]):
                 print("{:d}".format(i), end=" ")
                 idx += 1
             else:
-                print("{:d}".format(i), end ="\n")
+                print("{:d}".format(i), end ="")
+        print("")
