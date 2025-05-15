@@ -6,4 +6,5 @@ def best_score(a_dictionary):
     for pair in a_dictionary:
         if a_dictionary[pair] > i:
             i = a_dictionary[pair]
-    return i
+            res = pair
+    return res
