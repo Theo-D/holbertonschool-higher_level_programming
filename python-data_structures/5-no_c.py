@@ -2,6 +2,6 @@
 def no_c(my_string):
     newString = ""
     for letter in my_string:
-        if ord(letter) != 67 and ord(letter) != 99:
+        if letter != 'C' and letter != 'c':
             newString += letter
     return newString
