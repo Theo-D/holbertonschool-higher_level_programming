@@ -15,5 +15,7 @@ def say_my_name(first_name, last_name=""):
 
     if len(first_name) == 0:
         raise ValueError("first_name cannot be empty")
+    elif not first_name.strip():
+        raise ValueError("first_name cannot be whitespaces")
 
     print(f"My name is {first_name} {last_name}".strip())

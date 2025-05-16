@@ -12,6 +12,20 @@ My name is Frank
 >>> say_my_name("Jimi", "")
 My name is Jimi
 
+>>> say_my_name("PAIN" * 1000, "TEARS" * 1000)
+My name is PAINPAINPAINPAINPAIN... [cut] ...TEARSTEARSTEARSTEARSTEARS
+
+Special Characters
+------------------
+>>> say_my_name("Victor", "O'brian")
+My name is Victor O'brian
+
+>>> say_my_name("毛", "泽东")
+My name is 毛 泽东
+
+>>> say_my_name("صلاح الدين الأيوبي")
+My name is صلاح الدين الأيوبي
+
 Type Errors
 -----------
 >>> say_my_name(123, "Smith")
@@ -31,6 +45,11 @@ TypeError: first_name must be a string
 
 Value Errors
 ------------
+>>> say_my_name("   ", "Macron")
+Traceback (most recent call last):
+    ...
+ValueError: first_name cannot be whitespaces
+
 >>> say_my_name("")
 Traceback (most recent call last):
     ...
@@ -49,3 +68,10 @@ Surplus Arguments
 Traceback (most recent call last):
     ...
 TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given
+
+Syntax Errors
+-------------
+>>> say_my_name("""","""")
+File "<python-input-3>", line 1
+    ...
+SyntaxError: unterminated string literal (detected at line 1)
