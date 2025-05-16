@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 def list_division(my_list_1, my_list_2, list_length):
     newList = []
-    for elm1, elm2 in zip(my_list_1[:list_length], my_list_2[:list_length]):
+    for i in range(list_length):
         res = 0
         try:
-            res = elm1 / elm2
+            res = my_list_1[i] / my_list_2[i]
         except TypeError:
             print("wrong type")
             pass
