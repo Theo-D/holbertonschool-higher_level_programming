@@ -1,0 +1,51 @@
+#!/usr/bin/python3
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Strings
+-------
+>>> say_my_name("Frank", "Zappa")
+My name is Frank Zappa
+
+>>> say_my_name("Frank")
+My name is Frank
+
+>>> say_my_name("Jimi", "")
+My name is Jimi
+
+Type Errors
+-----------
+>>> say_my_name(123, "Smith")
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+>>> say_my_name("John", None)
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
+
+>>> say_my_name(["John"], "Doe")
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+Value Errors
+------------
+>>> say_my_name("")
+Traceback (most recent call last):
+    ...
+ValueError: first_name cannot be empty
+
+Missing Arguments
+-----------------
+>>> say_my_name()
+Traceback (most recent call last):
+    ...
+TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+Surplus Arguments
+-----------------
+>>> say_my_name("John", "Doe", "Extra")
+Traceback (most recent call last):
+    ...
+TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given

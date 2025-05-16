@@ -6,3 +6,6 @@
 
 2-matrix_divided.py - Divides all elements of a matrix.
     tests/2-matrix_divided.txt - Contains doctest of matrix_divided.py
+
+3-say_my_name.py - Prints "My name is <first name> <last name>"
+    tests/3-say_my_name.txt - Contains doctest for 3-say_my_name.py
