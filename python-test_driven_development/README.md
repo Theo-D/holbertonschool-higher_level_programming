@@ -9,3 +9,6 @@
 
 3-say_my_name.py - Prints "My name is <first name> <last name>"
     tests/3-say_my_name.txt - Contains doctest for 3-say_my_name.py
+
+4-print_square.py - Prints a square with the character #.
+    tests/4-print_square.txt - Contains doctest for 4-print_square.py
