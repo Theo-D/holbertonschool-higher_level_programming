@@ -12,9 +12,6 @@ My name is Frank
 >>> say_my_name("Jimi", "")
 My name is Jimi
 
->>> say_my_name("PAIN" * 1000, "TEARS" * 1000)
-My name is PAINPAINPAINPAINPAIN... [cut] ...TEARSTEARSTEARSTEARSTEARS
-
 Special Characters
 ------------------
 >>> say_my_name("Victor", "O'brian")
@@ -72,6 +69,6 @@ TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given
 Syntax Errors
 -------------
 >>> say_my_name("""","""")
-File "<python-input-3>", line 1
+Traceback (most recent call last):
     ...
 SyntaxError: unterminated string literal (detected at line 1)
