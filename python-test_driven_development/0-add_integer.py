@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 
+
 """
 0-add_integer.py
 Contains a function that adds two integers
 Return: integer
 """
+
 
 def add_integer(a, b=98):
     """
