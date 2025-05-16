@@ -12,3 +12,6 @@
 
 4-print_square.py - Prints a square with the character #.
     tests/4-print_square.txt - Contains doctest for 4-print_square.py
+
+5-text_indentation.py - Prints a text with 2 new lines after each of these characters: ., ? and :
+    tests/4-print_square.txt - Contains doctest for 5-text_indentation.py

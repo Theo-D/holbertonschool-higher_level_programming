@@ -1,0 +1,69 @@
+#!/usr/bin/python3
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Strings
+-------
+>>> text_indentation("hello:world")
+hello:
+<BLANKLINE>
+world
+
+>>> text_indentation("he.llo:wor?ld")
+he.
+<BLANKLINE>
+llo:
+<BLANKLINE>
+wor?
+<BLANKLINE>
+ld
+
+>>> text_indentation("こんにちは:世界")
+こんにちは:
+<BLANKLINE>
+世界
+
+>>> text_indentation("?:.")
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+.
+<BLANKLINE>
+
+>>> text_indentation('c')
+c
+
+>>> text_indentation("bon" + "jour")
+bonjour
+
+Type Errors
+-----------
+>>> text_indentation(6)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation(True)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation(None)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation(3.5)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+text_indentation()
+Traceback (most recent call last):
+    ...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+>>> text_indentation("bon", "jour")
+Traceback (most recent call last):
+    ...
+TypeError: text_indentation() takes 1 positional argument but 2 were given
