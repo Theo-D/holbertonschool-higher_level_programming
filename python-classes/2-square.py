@@ -1,6 +1,14 @@
 #!/usr/bin/python
 class Square:
-    def __init__(self, size = 0):
+    """
+    class representing a square
+    """
+    def __init__(self, size=0):
+        """
+        Class constructor for a Square object
+        Args:
+            size (int): Height and Width of Square
+        """
         self.__size = size
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
