@@ -13,4 +13,4 @@
 
 5-square.py - Added methods for printing a square to Square class.
 
-
+6-square.py - Added position(x, y) attribute that sets the position of the square printed by my_print.
