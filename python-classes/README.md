@@ -3,4 +3,6 @@
 
 0-square.py - Contains definition for an empty class.
 
-1-square.py - Added \__size private attribute to class Square 
+1-square.py - Added \__size private attribute to class Square.
+
+2-square.py - Added condition for enforcing type and value of \__size attribute in class Square. 
