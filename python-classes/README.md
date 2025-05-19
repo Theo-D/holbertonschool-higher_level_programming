@@ -5,4 +5,6 @@
 
 1-square.py - Added \__size private attribute to class Square.
 
-2-square.py - Added condition for enforcing type and value of \__size attribute in class Square. 
+2-square.py - Added condition for enforcing type and value of \__size attribute in class Square.
+
+3-square.py - Added method "area()" that returns area of an instance of a Square. 
