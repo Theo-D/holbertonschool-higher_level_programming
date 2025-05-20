@@ -10,3 +10,5 @@
 3-rectangle.py - Added __str__ instance method to print rectangle according to it height and width.
 
 4-rectangle.py - Added __repr__ instance method to return format allowinf __eval__ to instanciate a Rectangle object.
+
+5-rectangle.py - Added __del__ instance method to print "Bye rectangle..." when del command is called on a Rectangle object.
