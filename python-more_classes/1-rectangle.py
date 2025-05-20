@@ -3,7 +3,7 @@ class Rectangle:
     """
     A class representing a rectangle
     """
-    def __init__(self, width=0, height = 0):
+    def __init__(self, width=0, height=0):
         """
         Class constructor for a Rectangle object
         Args:
