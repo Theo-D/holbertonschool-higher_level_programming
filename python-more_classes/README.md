@@ -8,3 +8,5 @@
 2-rectangle.py - Added methods for returning area and perimeter of a Rectangle.
 
 3-rectangle.py - Added __str__ instance method to print rectangle according to it height and width.
+
+4-rectangle.py - Added __repr__ instance method to return format allowinf __eval__ to instanciate a Rectangle object.
