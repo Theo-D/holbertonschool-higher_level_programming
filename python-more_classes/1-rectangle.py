@@ -4,11 +4,22 @@ class Rectangle:
     A class representing a rectangle
     """
     def __init__(self, width=0, height = 0):
+        """
+        Class constructor for a Rectangle object
+        Args:
+            width (int): Width of Rectangle.
+            height (int): Height of Rectangle.
+        """
         self.__width = width
         self.__height = height
 
     @property
     def width(self):
+        """
+        Gets value of width
+
+        Sets value of width enforcing type (integer) and value (>= 0)
+        """
         return self.__width
 
     @width.setter
@@ -21,6 +32,11 @@ class Rectangle:
 
     @property
     def height(self):
+        """
+        Gets value of height
+
+        Sets value of height enforcing type (integer) and value (>= 0)
+        """
         return self.__height
 
     @height.setter
