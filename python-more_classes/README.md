@@ -15,4 +15,8 @@
 
 6-rectangle.py - Added number_of_instances public class attribute that keeps track of number of instances of Rectangle object that are created and deleted.
 
-7-rectangle.py - Added Added print_symbol public class attribute that defines symbol used to print Rectangle objects in __str__.
+7-rectangle.py - Added print_symbol public class attribute that defines symbol used to print Rectangle objects in __str__.
+
+8-rectangle.py - Added bigger_or_equal static method that returns the bigger area between two Rectangle's.
+
+9-rectangle.py - Added square class method that builds a square based on the Rectangle class.
