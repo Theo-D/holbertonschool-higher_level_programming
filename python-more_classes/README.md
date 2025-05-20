@@ -12,3 +12,5 @@
 4-rectangle.py - Added __repr__ instance method to return format allowinf __eval__ to instanciate a Rectangle object.
 
 5-rectangle.py - Added __del__ instance method to print "Bye rectangle..." when del command is called on a Rectangle object.
+
+6-rectangle.py - Added number_of_instances public class attribute that keeps track of number of instances of Rectangle object that are created and deleted.
