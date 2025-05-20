@@ -5,4 +5,6 @@
 
 1-rectangle.py - Added height property as well as getters and setters for both width adn height.
 
-2-rectangle.py Added methods for returning area and perimeter of a Rectangle.
+2-rectangle.py - Added methods for returning area and perimeter of a Rectangle.
+
+3-rectangle.py - Added __str__ instance method to print rectangle according to it height and width.
