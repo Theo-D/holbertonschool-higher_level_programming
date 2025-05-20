@@ -63,4 +63,9 @@ class Rectangle:
         Returns:
             result of (width * 2) + (height * 2)
         """
-        return (self.__width * 2) + (self.__height * 2)
+        perim = 0
+        if self.__width != 0 and self.__height != 0:
+            perim = (self.__width * 2) + (self.__height * 2)
+            return perim
+        else:
+            return perim
