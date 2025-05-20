@@ -14,3 +14,5 @@
 5-rectangle.py - Added __del__ instance method to print "Bye rectangle..." when del command is called on a Rectangle object.
 
 6-rectangle.py - Added number_of_instances public class attribute that keeps track of number of instances of Rectangle object that are created and deleted.
+
+7-rectangle.py - Added Added print_symbol public class attribute that defines symbol used to print Rectangle objects in __str__.
