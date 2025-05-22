@@ -75,10 +75,10 @@ class Square:
             print()
         else:
             if self.__position[0] > 0:
-                print(f"{'\n' * self.__position[0]}", end="")
+                print("{}".format('\n' * self.__position[0]), end="")
             for i in range(self.__size):
                 if self.__position[1] > 0:
-                    print(f"{' ' * self.__position[1]}", end="")
+                    print("{}".format(' ' * self.__position[1]), end="")
                 for j in range(self.__size):
                     print("#", end="")
                 print()
