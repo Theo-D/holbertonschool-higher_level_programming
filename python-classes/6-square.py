@@ -78,7 +78,7 @@ class Square:
         at "position" coordinates.
         """
         if self.__size == 0:
-            print()
+            print("")
         else:
             if self.__position[0] > 0:
                 print("{}".format('\n' * self.__position[0]), end="")
