@@ -22,6 +22,6 @@ class MyList(list):
         """
         Prints the list, but sorted (ascending sort)
         """
-        toPrint = self
+        toPrint = self.copy()
         toPrint.sort()
         print(toPrint)
