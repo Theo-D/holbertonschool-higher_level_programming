@@ -1,5 +1,6 @@
 >>> MyList = __import__('1-my_list').MyList
 >>> testList = MyList()
+>>> testList2 = MyList()
 
 Positive Integers
 -----------------
@@ -35,4 +36,12 @@ Empty List
 ----------
 >>> testList.clear()
 >>> testList.print_sorted()
+[]
+
+Returns a new list
+------------------
+>>> testList.clear()
+>>> testList.extend([7, -2, 0, -5, 4])
+>>> testList2.extend([13, 5, -15, 8])
+>>> print(list(set(testList) - set(testList)))
 []
