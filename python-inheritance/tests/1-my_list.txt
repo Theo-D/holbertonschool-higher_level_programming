@@ -30,3 +30,9 @@ Positive and Negative Integers
 [7, -2, 0, -5, 4, -12, 12]
 >>> testList.print_sorted()
 [-12, -5, -2, 0, 4, 7, 12]
+
+Empty List
+----------
+>>> testList.clear()
+>>> testList.print_sorted()
+[]
