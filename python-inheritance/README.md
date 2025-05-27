@@ -13,3 +13,5 @@
 4-inherits_from - Checks if an object inherits from given class.
 
 5-base_geometry.py - An empty class BaseGeometry
+
+6-base_geometry.py - Added public instance method: def area(self): that raises an Exception with the message area() is not implemented.
