@@ -37,3 +37,4 @@ class VerboseList(list):
         """
         elm = super().pop(idx)
         print("Popped [{}] from the list.".format(elm))
+        return elm
