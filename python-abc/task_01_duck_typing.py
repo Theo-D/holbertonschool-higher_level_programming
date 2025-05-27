@@ -1,10 +1,10 @@
 #!/usr/bin/python3
+
 """
 A module for training abstract methods and duck typing.
 """
 from abc import ABC, abstractmethod
 from math import pi
-
 
 
 class Shape(ABC):
@@ -24,6 +24,7 @@ class Shape(ABC):
         Method returning the area of a Shape.
         """
         pass
+
 
 class Circle(Shape):
     """
@@ -67,6 +68,7 @@ class Rectangle(Shape):
         Method returning perimeter of a Rectangle.
         """
         return 2 * (self.__width + self.__height)
+
 
 def shape_info(shapeObj):
     """

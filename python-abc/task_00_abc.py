@@ -4,9 +4,8 @@
 task_00_abc
 Module for practicing with creating abstract classes and using duck typing
 """
-
-
 from abc import ABC, abstractmethod
+
 
 class Animal(ABC):
     """
@@ -19,12 +18,14 @@ class Animal(ABC):
         """
         pass
 
+
 class Dog(Animal):
     """
     A class representing a dog
     """
     def sound(self):
         return "Bark"
+
 
 class Cat(Animal):
     """
