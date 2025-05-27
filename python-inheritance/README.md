@@ -9,3 +9,5 @@
 2-is_same_class.py -  Checks if the object is exactly an instance of a given class.
 
 3-is_kind_of_class - Checks is an object is an instance of a given class.
+
+4-inherits_from - Checks if an object inherits from given class.
