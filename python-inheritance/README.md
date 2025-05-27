@@ -11,3 +11,5 @@
 3-is_kind_of_class - Checks is an object is an instance of a given class.
 
 4-inherits_from - Checks if an object inherits from given class.
+
+5-base_geometry.py - An empty class BaseGeometry
