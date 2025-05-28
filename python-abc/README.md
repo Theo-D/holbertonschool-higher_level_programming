@@ -9,4 +9,6 @@ task_02_verboselist.py - Contains definition for VerboseList that extends on met
 
 task_03_countediterator.py - Extends the built-in iterator obtained from the iter function.
 
-task_04_flyingfish.py - Contains definition of classes to work with multiple inheritance.
+task_04_flyingfish.py - Contains definition of classes for working with multiple inheritance.
+
+task_05_dragon.py - Contains definitions of classes for working with mixin classes
