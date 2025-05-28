@@ -6,3 +6,5 @@ task_00_abc.py - Contains definition for abstract class Animal and Dog and Cat c
 task_01_duck_typing.py - Contains definitions for abstract class Shape and classes Rectangle and Square inheriting from shape.
 
 task_02_verboselist.py - Contains definition for VerboseList that extends on methods for the class List.
+
+task_03_countediterator.py - Extends the built-in iterator obtained from the iter function.
