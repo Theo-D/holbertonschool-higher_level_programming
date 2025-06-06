@@ -24,3 +24,5 @@
 10-student.py - Module containing a class describing a student
 
 11-sutdent.py - Module containing a class describing a student
+
+12-pascal_triangle.py - Module containing a function for building a pascal triangle
