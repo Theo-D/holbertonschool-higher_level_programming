@@ -18,9 +18,10 @@ class myServer(BaseHTTPRequestHandler):
         dataSet = {"name": "John", "age": 30, "city": "New York"}
         infoSet = {"version": "1.0", "description":
                    "A simple API built with http.server"}
-        endpointDict = {"/data": dataSet, "/info": infoSet, "/status": "OK"}
+        endpointDict = {"/data": dataSet, "/info": infoSet, "/status": "OK", "/": ""}
         if self.path in endpointDict:
-            print(json.dumps(endpointDict[self.path]))
+            if len(endpointDict[self.path]) > 0:
+                print(json.dumps(endpointDict[self.path]))
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
         else:
