@@ -22,8 +22,8 @@ class myServer(BaseHTTPRequestHandler):
         if self.path in endpointDict:
             if len(endpointDict[self.path]) > 0:
                 print(json.dumps(endpointDict[self.path]))
+                self.send_header('Content-type', 'application/json')
             self.send_response(200)
-            self.send_header('Content-type', 'application/json')
         else:
             print("Endpoint Not Found")
             self.send_response(404)
