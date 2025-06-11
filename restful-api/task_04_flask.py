@@ -37,7 +37,7 @@ def getUsers(username):
 @app.route("/add_user", methods=["POST"])
 def addUSer():
     newUser = request.get_json()
-    if 'username' not in newUser or newUser is not None:
+    if 'username' not in newUser or not newUser:
         return jsonify({"error": "Username is required"}), 400
     userDict[newUser["username"]]
     return jsonify({"message": "User added", "user": newUser}), 201
