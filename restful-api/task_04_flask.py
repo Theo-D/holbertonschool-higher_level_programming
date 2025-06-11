@@ -15,7 +15,7 @@ def home():
 
 
 @app.route("/data")
-def serializeUsernames(userDict):
+def serializeUsernames():
     return jsonify({'username': userDict})
 
 
