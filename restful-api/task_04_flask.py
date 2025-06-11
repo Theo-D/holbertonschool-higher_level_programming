@@ -24,7 +24,7 @@ def status():
     return "Ok"
 
 
-@app.route("/users/<str:username>")
+@app.route("/users/<username>")
 def getUsers(username):
     for user in userDict:
         if user == username:
@@ -33,7 +33,7 @@ def getUsers(username):
             return jsonify({"error": "User not found"}), 404
 
 
-@app.route("/add_user", method="POST")
+@app.route("/add_user", methods=["POST"])
 def addUSer():
     newUser = request.get_json()
     if "username" not in newUser:
