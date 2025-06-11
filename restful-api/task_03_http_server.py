@@ -24,16 +24,19 @@ class myServer(BaseHTTPRequestHandler):
                         "/": "Hello, this is a simple API!"}
         if self.path in endpointDict:
             self.send_response(200)
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
             if isinstance(endpointDict[self.path], dict):
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
                 self.wfile.write(json.dumps(endpointDict[self.path])
                                      .encode("utf8"))
             elif isinstance(endpointDict[self.path], str):
+                self.send_header('Content-type', 'text/plain')
+                self.end_headers()
                 self.wfile.write(str(endpointDict[self.path])
                                  .encode("utf8"))
         else:
             self.send_response(404)
+            self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write("Endpoint Not Found".encode("utf-8"))
 
