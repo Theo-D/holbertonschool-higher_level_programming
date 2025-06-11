@@ -16,7 +16,7 @@ def home():
 
 @app.route("/data")
 def serializeUsernames():
-    return jsonify({'username': userDict})
+    return jsonify({userDict['username']: userDict})
 
 
 @app.route("/status")
@@ -40,7 +40,7 @@ def addUSer():
         return jsonify({"error": "Username is required"}), 400
     else:
         userDict[newUser["username"]]
-        return jsonify({"message": "User added", "user": newUser})
+        return jsonify({"message": "User added", "user": newUser}), 201
 
 
 if __name__ == "__main__":
