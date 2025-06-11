@@ -20,14 +20,15 @@ class myServer(BaseHTTPRequestHandler):
                    "A simple API built with http.server"}
         endpointDict = {"/data": dataSet, "/info": infoSet, "/status": "OK", "/": ""}
         if self.path in endpointDict:
-            if self.path != "/":
-                print(json.dumps(endpointDict[self.path]))
-                self.send_header('Content-type', 'application/json')
             self.send_response(200)
+            if self.path != "/":
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                self.wfile.write(str(endpointDict[self.path]).encode("utf8"))
         else:
-            print("Endpoint Not Found")
             self.send_response(404)
-        self.end_headers()
+            self.wfile.write("Endpoint Not Found".encode("utf-8"))
+            self.end_headers()
 
 
 def run(server_class=HTTPServer, handler_class=myServer):
