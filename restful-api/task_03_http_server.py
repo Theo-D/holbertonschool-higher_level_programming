@@ -18,13 +18,21 @@ class myServer(BaseHTTPRequestHandler):
         dataSet = {"name": "John", "age": 30, "city": "New York"}
         infoSet = {"version": "1.0", "description":
                    "A simple API built with http.server"}
-        endpointDict = {"/data": dataSet, "/info": infoSet, "/status": "OK", "/": ""}
+        endpointDict = {"/data": dataSet,
+                        "/info": infoSet,
+                        "/status": "OK",
+                        "/": "Hello, this is a simple API!"}
         if self.path in endpointDict:
             self.send_response(200)
-            if self.path != "/":
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
-                self.wfile.write(str(endpointDict[self.path]).encode("utf8"))
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            if isinstance(endpointDict[self.path], dict):
+                self.wfile.write(json.dumps(endpointDict[self.path])
+                                     .encode("utf8"))
+            elif isinstance(endpointDict[self.path], str):
+                self.wfile.write(str(endpointDict[self.path])
+                                 .encode("utf8"))
+
         else:
             self.send_response(404)
             self.wfile.write("Endpoint Not Found".encode("utf-8"))
@@ -35,7 +43,7 @@ def run(server_class=HTTPServer, handler_class=myServer):
     """
     run - Function to run webserver and learn about http methods.
     """
-    server_address = ('', 8000)
+    server_address = ("localhost", 8000)
     httpd = server_class(server_address, handler_class)
     httpd.serve_forever()
 
