@@ -32,11 +32,10 @@ class myServer(BaseHTTPRequestHandler):
             elif isinstance(endpointDict[self.path], str):
                 self.wfile.write(str(endpointDict[self.path])
                                  .encode("utf8"))
-
         else:
             self.send_response(404)
-            self.wfile.write("Endpoint Not Found".encode("utf-8"))
             self.end_headers()
+            self.wfile.write("Endpoint Not Found".encode("utf-8"))
 
 
 def run(server_class=HTTPServer, handler_class=myServer):
