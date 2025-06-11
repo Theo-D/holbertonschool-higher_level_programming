@@ -16,7 +16,8 @@ def home():
 
 @app.route("/data")
 def serializeUsernames():
-    return jsonify({userDict['username']: userDict})
+    usernames = list(userDict.keys())
+    return jsonify(usernames)
 
 
 @app.route("/status")
@@ -26,7 +27,7 @@ def status():
 
 @app.route("/users/<username>")
 def getUsers(username):
-    for user in userDict:
+    for user in userDict.keys():
         if user == username:
             return jsonify(userDict[user])
         else:
