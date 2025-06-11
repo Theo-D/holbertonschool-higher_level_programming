@@ -22,7 +22,7 @@ def serializeUsernames():
 
 @app.route("/status")
 def status():
-    return "Ok"
+    return "OK"
 
 
 @app.route("/users/<username>")
