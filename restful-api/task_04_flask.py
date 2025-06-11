@@ -39,7 +39,7 @@ def addUSer():
     newUser = request.get_json()
     if 'username' not in newUser or not newUser:
         return jsonify({"error": "Username is required"}), 400
-    userDict[newUser["username"]]
+    userDict[newUser["username"]] = newUser
     return jsonify({"message": "User added", "user": newUser}), 201
 
 
