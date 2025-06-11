@@ -5,9 +5,9 @@ task_04_flask.py -
 from flask import Flask, jsonify, request
 
 
-userDict = {}
-app = Flask(__name__)
 
+app = Flask(__name__)
+userDict = {}
 
 @app.route("/")
 def home():
@@ -36,7 +36,7 @@ def getUsers(username):
 @app.route("/add_user", methods=["POST"])
 def addUSer():
     newUser = request.get_json()
-    if "username" not in newUser or newUser is not None:
+    if "username" not in newUser or not newUser:
         return jsonify({"error": "Username is required"}), 400
     else:
         userDict[newUser["username"]]
