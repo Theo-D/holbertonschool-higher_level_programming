@@ -45,7 +45,7 @@ def basic_protected():
 # curl -X POST http://localhost:5000/login
 # -H "Content-Type: application/json"
 # -d '{"username": "username", "password": "password"}'
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
     username = data.get('username')
@@ -62,7 +62,7 @@ def login():
 
 # Access with: curl -H "Authorization: Bearer access_token"
 # http://127.0.0.1:5000/jwt-protected
-@app.route("/jwt-protected", methods=["GET"])
+@app.route("/jwt-protected")
 @jwt_required()
 def jwt_protected():
     return "JWT Auth: Access Granted"
@@ -70,7 +70,7 @@ def jwt_protected():
 
 # Access with: curl -H "Authorization: Bearer access_token"
 # http://127.0.0.1:5000/jwt-protected
-@app.route("/admin-only", methods=["GET"])
+@app.route("/admin-only")
 @jwt_required()
 def admin():
     current_user = get_jwt()
