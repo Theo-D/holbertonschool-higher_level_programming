@@ -55,7 +55,7 @@ def login():
         access_token = create_access_token(identity=username,
                                            additional_claims={"role":
                                            user["role"]})
-        return jsonify(access_token)
+        return jsonify(access_token), 200
     else:
         return ({"msg": "Bad username or password"}), 401
 
