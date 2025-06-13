@@ -69,10 +69,6 @@ def login():
 def jwt_protected():
     return "JWT Auth: Access Granted"
 
-@jwt.user_identity_loader
-def user_id_tostr(user):
-    return str(user)
-
 
 # Access with: curl -H "Authorization: Bearer access_token"
 # http://127.0.0.1:5000/jwt-protected
@@ -90,9 +86,9 @@ def handle_unauthorized_error(err):
     return jsonify({"error": "Missing or invalid token"}), 401
 
 
-""" @jwt.invalid_token_loader
+@jwt.invalid_token_loader
 def handle_invalid_token_error(err):
-    return jsonify({"error": "Invalid token"}), 401 """
+    return jsonify({"error": "Invalid token"}), 401
 
 
 @jwt.expired_token_loader
