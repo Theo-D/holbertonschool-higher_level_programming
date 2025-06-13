@@ -32,10 +32,8 @@ def home():
 def verify_password(username, password):
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
-        return user
-    else:
-        return None
-
+        return username
+    return None
 
 @app.route('/basic-protected')
 @auth.login_required
