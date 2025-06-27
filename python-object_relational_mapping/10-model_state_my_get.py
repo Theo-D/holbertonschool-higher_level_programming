@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 Prints the state from database which name was given as argument
 """
