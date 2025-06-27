@@ -21,8 +21,7 @@ if __name__ == "__main__":
     )
     cnx = db.cursor()
     # execute needs tuple to pass argument to query
-    cnx.execute("SELECT * FROM states WHERE name = %s ORDER BY id",
-                (state_name,))
+    cnx.execute("SELECT * FROM states WHERE name = '{}' ORDER BY id".format(state_name))
 
     for row in cnx.fetchall():
         print(row)
