@@ -5,6 +5,7 @@ Lists all states from the database hbtn_0e_0_usa.
 import MySQLdb
 import sys
 
+cities = []
 
 if __name__ == "__main__":
     username = sys.argv[1]
@@ -22,14 +23,13 @@ if __name__ == "__main__":
     cnx = db.cursor()
     cnx.execute("SELECT cities.name FROM cities "
                 "JOIN states ON cities.state_id = states.id"
-                " WHERE BINARY states.name = %s ORDER BY cities.id;", (state_name,))
+                " WHERE states.name = %s ORDER BY cities.id;", (state_name,))
 
     res = cnx.fetchall()
-    for i in range(len(res)):
-        if i < len(res) - 1:
-            print(res[i][0], end=", ")
-        else:
-            print(res[i][0], end="\n")
+    for elm in res:
+        cities.append(elm[0])
+
+    print(", ".join(cities))
 
     cnx.close()
     db.close()
