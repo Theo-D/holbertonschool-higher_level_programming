@@ -26,5 +26,5 @@ if __name__ == "__main__":
         .order_by(State.id)\
         .all()\
 
-    for state in  a_state:
+    for state in a_state:
         print("{}: {}".format(state.id, state.name))
