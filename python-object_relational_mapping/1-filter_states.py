@@ -19,7 +19,7 @@ if __name__ == "__main__":
         db=database
     )
     cnx = db.cursor()
-    cnx.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
+    cnx.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id")
 
     for row in cnx.fetchall():
         print(row)
