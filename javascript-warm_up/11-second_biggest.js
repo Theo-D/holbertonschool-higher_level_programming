@@ -4,7 +4,7 @@ const { argv } = require('node:process');
 const size = argv.length;
 let num = 0;
 
-function toInt (index, arr) {
+function toInt (currVal, index, arr) {
   arr[index] = parseInt(arr[index]);
 }
 
