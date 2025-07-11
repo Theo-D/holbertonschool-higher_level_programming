@@ -6,7 +6,7 @@ const times = parseInt(argv[2]);
 if (isNaN(times)) {
   console.log('Missing size');
 } else {
-  for (let i = 0; i < x; i++) {
+  for (let i = 0; i < times; i++) {
     console.log('X'.repeat(times));
   }
 }
