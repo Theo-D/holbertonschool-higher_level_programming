@@ -1,4 +1,4 @@
-# Higher LEvel Programming - Javascript DOM Manipulation
+# Higher Level Programming - Javascript DOM Manipulation
 ## This Repository contains tasks files for the Javascript DOM Manipulation project.
 
 0-script.js - A script that updates the text color of the header element to red (#FF0000).
