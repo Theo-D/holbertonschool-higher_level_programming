@@ -33,6 +33,7 @@ def generate_invitations(template_content: str, attendees: dict):
                             "N/A"
                             )
         file_name = "output_" + str(attendee_index + 1) + ".txt"
-        with open(file_name, "w") as f:
-            f.write(template_content)
+        if template_content:
+            with open(file_name, "w") as f:
+                f.write(template_content)
         attendee_index = attendee_index + 1
