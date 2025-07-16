@@ -1,5 +1,5 @@
 # Python - Input/Output
-### This README will contain descriptions for .py files in this repo
+### This README contains descriptions for .py files in this repo
 
 0-read_file.py - Reads a text file (UTF8) and prints it to stdout.
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module containing functions to serialize and deserialize data.
+task_00_basic_serialization.py - Module containing functions to serialize and deserialize data.
 """
 import json
 
