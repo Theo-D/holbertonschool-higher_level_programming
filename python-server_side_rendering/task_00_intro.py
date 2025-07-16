@@ -22,15 +22,17 @@ def generate_invitations(template_content: str, attendees: dict):
             for key in keyList:
                 braced_key = "{" + key + "}"
                 if (match == braced_key):
+                    value = attendees[attendee_index][key]
                     try:
                         template_content = template_content.replace(
                             match,
-                            attendees[attendee_index][key]
+                            value
                             )
                     except (TypeError, KeyError):
+                        value = 'N/A'
                         template_content = template_content.replace(
                             match,
-                            "N/A"
+                            value
                             )
         file_name = "output_" + str(attendee_index + 1) + ".txt"
         if template_content:
