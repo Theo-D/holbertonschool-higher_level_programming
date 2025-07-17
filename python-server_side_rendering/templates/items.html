@@ -5,7 +5,7 @@
     </head>
     <body>
         {% include "header.html" %}
-        {% if items and 'items' in items and items['items']|length > 0 -%}
+        {% if items and items[0]|length > 0 -%}
         <ul>
             {% for item in items -%}
             <li> {{ item }} </li>
