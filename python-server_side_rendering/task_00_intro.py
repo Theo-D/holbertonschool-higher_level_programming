@@ -1,47 +1,42 @@
-from os.path import exists
-import re
+def generate_invitations(template_content: str, attendees: list):
 
+    if not isinstance(attendees, list) or not all(isinstance(attendee, dict) for attendee in attendees):
+        print("attendees must be of type list")
+        return
 
-def generate_invitations(template_content: str, attendees: dict):
+    if not attendees:
+        print("attendees must not be empty")
+        return
+
+    if not isinstance(template_content, str):
+        print("template_content must be of type str")
+        return
+
+    if not template_content.strip():
+        print("template_content must not be empty")
+        return
 
     keyList = []
-    pattern = r"\{[^}]*\}"
-    attendee_index = 0
-    original_content = template_content
 
     for dicts in attendees:
         for keys in dicts:
             keyList.append(keys)
             keyList = list(dict.fromkeys(keyList))
 
-    matches = re.findall(pattern, template_content)
+    for i in range(len(attendees)):
+        new_template = template_content
+        for key in keyList:
+                try:
+                    value = attendees[i][key]
+                    new_template = new_template.replace(f"{{{key}}}", value)
+                except (TypeError, KeyError):
+                    value = 'N/A'
+                    new_template = new_template.replace(f"{{{key}}}", value)
 
-    while attendee_index < (len(attendees)):
-        template_content = original_content
+        file_name = f"output_{str(i + 1)}.txt"
 
-        for match in matches:
-            for key in keyList:
-
-                braced_key = f"{{{key}}}"
-
-                if (match == braced_key):
-                    value = attendees[attendee_index][key]
-
-                    try:
-                        template_content = template_content.replace(
-                            match,
-                            value
-                            )
-                    except (TypeError, KeyError):
-                        value = 'N/A'
-                        template_content = template_content.replace(
-                            match,
-                            value
-                            )
-
-        file_name = f"output_{str(attendee_index + 1)}.txt"
-
-        if template_content:
+        try:
             with open(file_name, "w") as f:
-                f.write(template_content)
-        attendee_index = attendee_index + 1
+                f.write(new_template)
+        except Exception as e:
+            raise Exception('Could not open file')
