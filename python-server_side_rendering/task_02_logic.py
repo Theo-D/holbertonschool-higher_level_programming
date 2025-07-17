@@ -21,10 +21,10 @@ def items():
     file = "items.json"
     try:
         with open(file, 'r', encoding="utf-8") as f:
-            items = json.loads(f.read())
+            items = json.loads(f.read())['items']
     except (KeyError, FileNotFoundError):
         items = []
-    return render_template('items.html', items=items['items'])
+    return render_template('items.html', items=items)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
