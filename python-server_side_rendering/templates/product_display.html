@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>My Flask App</title>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    {% if product %}
+        <h1>Product N°{{ product.id }}</h1>
+        <ul>
+            {% for key, value in product.items() %}
+                <li>{{ key }}: {{ value }}</li>
+            {% endfor %}
+        </ul>
+
+    {% elif products %}
+        <h1>Products</h1>
+        {% for product_list in products %}
+                <ul>
+                    {% for key, value in product_list.items() %}
+                        <li>{{ key }}: {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    {% elif err %}
+        <p style="color:red;">{{ err }}</p>
+    {% endif %}
+
+    {% include 'footer.html' %}
+</body>
+</html>
