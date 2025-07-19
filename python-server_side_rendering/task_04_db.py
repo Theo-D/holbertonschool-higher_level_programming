@@ -36,7 +36,6 @@ def products():
     product_list = []
     product = None
 
-    # Map short source names to actual filenames
     source_map = {
         'json': 'products.json',
         'csv': 'products.csv',
@@ -44,7 +43,7 @@ def products():
     }
 
     if not source or source not in source_map:
-        err_msg = "Invalid or missing source"
+        err_msg = "Wrong source"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
 
     file_path = source_map[source]
@@ -81,13 +80,12 @@ def products():
                 conn.close()
 
     except FileNotFoundError:
-        err_msg = "Source file not found"
+        err_msg = "Wrong source"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
     except sqlite3.Error as e:
         err_msg = f"Database error: {e}"
         return render_template('product_display.html', product_list=[], err=err_msg)
 
-    # If product_id and source is json or csv
     if product_id and source in ['json', 'csv']:
         if source == 'json':
             product_id = int(product_id)
