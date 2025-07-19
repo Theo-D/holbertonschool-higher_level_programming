@@ -35,30 +35,33 @@ def products():
     product_list = []
     product = None
 
-    if not source:
-        err_msg = "source not found"
+    source_dict = {
+        'json': 'products.json',
+        'csv': 'products.csv'
+    }
+
+    if not source or source not in source_dict:
+        err_msg = "Invalid or missing source"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
 
-    if source.endswith('.json') or source.endswith('.csv'):
-        try:
-            with open(source, 'r') as f:
-                if source.endswith('.json'):
-                    product_list = json.load(f)
-                else:
-                    csv_file = csv.DictReader(f)
-                    product_list = list(csv_file)
-        except FileNotFoundError:
-            err_msg = "source not found"
-            return render_template('product_display.html', product_list=product_list, err=err_msg)
-    else:
-        err_msg = "unsupported file format"
+    file_path = source_dict[source]
+
+    try:
+        with open(file_path, 'r') as f:
+            if source == 'json':
+                product_list = json.load(f)
+            else:
+                csv_file = csv.DictReader(f)
+                product_list = list(csv_file)
+    except FileNotFoundError:
+        err_msg = "Source file not found"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
 
     if product_id:
-        if source.endswith('.json'):
+        if source == 'json':
             product_id = int(product_id)
         for item in product_list:
-            if item.get('id') == product_id:
+            if item.get('id') == product_id or str(item.get('id')) == str(product_id):
                 product = item
                 break
         if product:
