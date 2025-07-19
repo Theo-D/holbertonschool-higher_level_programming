@@ -36,17 +36,18 @@ def products():
     product_list = []
     product = None
 
-    source_dict = {
+    # Map short source names to actual filenames
+    source_map = {
         'json': 'products.json',
         'csv': 'products.csv',
         'db': 'products.db'
     }
 
-    if not source or source not in source_dict:
-        err_msg = "Wrong source"
+    if not source or source not in source_map:
+        err_msg = "Invalid or missing source"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
 
-    file_path = source_dict[source]
+    file_path = source_map[source]
 
     try:
         if source == 'json':
@@ -66,21 +67,27 @@ def products():
             if product_id:
                 cursor.execute("SELECT * FROM Products WHERE id = ?", (product_id,))
                 row = cursor.fetchone()
+                conn.close()
                 if row:
                     product = dict(row)
+                    return render_template('product_display.html', product=product, err=err_msg)
                 else:
                     err_msg = "Product not found"
-                    return render_template('product_display.html', product=product, err=err_msg)
+                    return render_template('product_display.html', product=None, err=err_msg)
             else:
                 cursor.execute("SELECT * FROM Products")
                 rows = cursor.fetchall()
                 product_list = [dict(row) for row in rows]
-            conn.close()
+                conn.close()
 
     except FileNotFoundError:
-        err_msg = "Wrong source"
+        err_msg = "Source file not found"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
+    except sqlite3.Error as e:
+        err_msg = f"Database error: {e}"
+        return render_template('product_display.html', product_list=[], err=err_msg)
 
+    # If product_id and source is json or csv
     if product_id and source in ['json', 'csv']:
         if source == 'json':
             product_id = int(product_id)
@@ -92,7 +99,7 @@ def products():
             return render_template('product_display.html', product=product, err=err_msg)
         else:
             err_msg = "Product not found"
-            return render_template('product_display.html', product=product, err=err_msg)
+            return render_template('product_display.html', product=None, err=err_msg)
 
     return render_template('product_display.html', product_list=product_list, err=err_msg)
 
