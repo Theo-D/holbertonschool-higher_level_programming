@@ -41,7 +41,7 @@ def products():
     }
 
     if not source or source not in source_dict:
-        err_msg = "Invalid or missing source"
+        err_msg = "Wrong source"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
 
     file_path = source_dict[source]
@@ -54,7 +54,7 @@ def products():
                 csv_file = csv.DictReader(f)
                 product_list = list(csv_file)
     except FileNotFoundError:
-        err_msg = "Source file not found"
+        err_msg = "Wrong source"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
 
     if product_id:
