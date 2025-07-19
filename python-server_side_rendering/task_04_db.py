@@ -57,6 +57,7 @@ def products():
             with open(file_path, 'r') as f:
                 csv_file = csv.DictReader(f)
                 product_list = list(csv_file)
+                print(product_list)
 
         elif source == 'db':
             conn = sqlite3.connect(file_path)
