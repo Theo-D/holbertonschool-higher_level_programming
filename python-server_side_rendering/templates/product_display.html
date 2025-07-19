@@ -4,30 +4,52 @@
     <title>My Flask App</title>
 </head>
 <body>
-    {% include 'header.html' %}
+    {% include "header.html" %}
+    <h1>Product Display</h1>
 
-    {% if product %}
-        <h1>Product N°{{ product.id }}</h1>
-        <ul>
-            {% for key, value in product.items() %}
-                <li>{{ key }}: {{ value }}</li>
-            {% endfor %}
-        </ul>
-
-    {% elif products %}
-        <h1>Products</h1>
-        {% for product_list in products %}
-                <ul>
-                    {% for key, value in product_list.items() %}
-                        <li>{{ key }}: {{ value }}</li>
+    {% if err %}
+        <p>{{ err }}</p>
+    {% else %}
+        {% if product %}
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ product['name'] }}</td>
+                        <td>{{ product['category'] }}</td>
+                        <td>{{ product['price'] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% elif product_list %}
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in product_list %}
+                    <tr>
+                        <td>{{ item['name'] }}</td>
+                        <td>{{ item['category'] }}</td>
+                        <td>{{ item['price'] }}</td>
+                    </tr>
                     {% endfor %}
-                </ul>
-            </div>
-        {% endfor %}
-    {% elif err %}
-        <p style="color:red;">{{ err }}</p>
+                </tbody>
+            </table>
+        {% else %}
+            <p>No products to display.</p>
+        {% endif %}
     {% endif %}
 
-    {% include 'footer.html' %}
+    {% include "footer.html" %}
 </body>
-</html>

@@ -32,48 +32,42 @@ def products():
     source = request.args.get('source')
     product_id = request.args.get('id')
     err_msg = ""
-    products = []
+    product_list = []
     product = None
 
     if not source:
         err_msg = "source not found"
-        return render_template('product_display.html', err=err_msg)
+        return render_template('product_display.html', product_list=product_list, err=err_msg)
 
-    if not source.endswith('.json') and not source.endswith('.csv'):
-        err_msg = "Wrong source"
-        return render_template('product_display.html', err=err_msg)
-
-    if source.endswith('.json'):
+    if source.endswith('.json') or source.endswith('.csv'):
         try:
             with open(source, 'r') as f:
-                products = json.load(f)
+                if source.endswith('.json'):
+                    product_list = json.load(f)
+                else:
+                    csv_file = csv.DictReader(f)
+                    product_list = list(csv_file)
         except FileNotFoundError:
             err_msg = "source not found"
-            return render_template('product_display.html', err=err_msg)
-
-    if source.endswith('.csv'):
-        try:
-            with open(source, 'r') as f:
-                csv_file = csv.DictReader(f)
-                products = list(csv_file)
-        except FileNotFoundError:
-            err_msg = "source not found"
-            return render_template('product_display.html', err=err_msg)
+            return render_template('product_display.html', product_list=product_list, err=err_msg)
+    else:
+        err_msg = "unsupported file format"
+        return render_template('product_display.html', product_list=product_list, err=err_msg)
 
     if product_id:
         if source.endswith('.json'):
             product_id = int(product_id)
-        for item in products:
+        for item in product_list:
             if item.get('id') == product_id:
                 product = item
                 break
         if product:
-            return render_template('product_display.html', product=product)
+            return render_template('product_display.html', product=product, err=err_msg)
         else:
             err_msg = "Product not found"
-            return render_template('product_display.html', err=err_msg)
+            return render_template('product_display.html', product=product, err=err_msg)
 
-    return render_template('product_display.html', products=products)
+    return render_template('product_display.html', product_list=product_list, err=err_msg)
 
 
 if __name__ == '__main__':
