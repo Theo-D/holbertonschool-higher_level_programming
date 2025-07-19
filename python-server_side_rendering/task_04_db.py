@@ -36,48 +36,56 @@ def products():
     product_list = []
     product = None
 
-    if not source:
-        err_msg = "source not found"
+    source_dict = {
+        'json': 'products.json',
+        'csv': 'products.csv',
+        'db': 'products.db'
+    }
+
+    if not source or source not in source_dict:
+        err_msg = "Invalid or missing source"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
 
-    if source.endswith('.json') or source.endswith('.db') or source.endswith('.csv'):
-        try:
-            with open(source, 'r') as f:
-                if source.endswith('.json'):
-                    product_list = json.load(f)
-                elif source.endswith('.db'):
-                    conn = sqlite3.connect(source)
-                    conn.row_factory = sqlite3.Row  # Enables dict-like access
-                    cursor = conn.cursor()
+    file_path = source_dict[source]
+
+    try:
+        if source == 'json':
+            with open(file_path, 'r') as f:
+                product_list = json.load(f)
+
+        elif source == 'csv':
+            with open(file_path, 'r') as f:
+                csv_file = csv.DictReader(f)
+                product_list = list(csv_file)
+
+        elif source == 'db':
+            conn = sqlite3.connect(file_path)
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+
+            if product_id:
+                cursor.execute("SELECT * FROM Products WHERE id = ?", (product_id,))
+                row = cursor.fetchone()
+                if row:
+                    product = dict(row)
                 else:
-                    csv_file = csv.DictReader(f)
-                    product_list = list(csv_file)
-        except FileNotFoundError:
-            err_msg = "source not found"
-            return render_template('product_display.html', product_list=product_list, err=err_msg)
-    else:
-        err_msg = "unsupported file format"
+                    err_msg = "Product not found"
+                    return render_template('product_display.html', product=product, err=err_msg)
+            else:
+                cursor.execute("SELECT * FROM Products")
+                rows = cursor.fetchall()
+                product_list = [dict(row) for row in rows]
+            conn.close()
+
+    except FileNotFoundError:
+        err_msg = "Source file not found"
         return render_template('product_display.html', product_list=product_list, err=err_msg)
 
-    if product_id and source.endswith('.db'):
-        cursor.execute("SELECT * FROM Products WHERE id = ?", (product_id,))
-        row = cursor.fetchone()
-        if row:
-            product = dict(row)
-        else:
-            err_msg = "Product not found"
-            return render_template('product_display.html', product=product, err=err_msg)
-    else:
-        cursor.execute("SELECT * FROM Products")
-        rows = cursor.fetchall()
-        product_list = [dict(row) for row in rows]
-    conn.close()
-
-    if product_id:
-        if source.endswith('.json'):
+    if product_id and source in ['json', 'csv']:
+        if source == 'json':
             product_id = int(product_id)
         for item in product_list:
-            if item.get('id') == product_id:
+            if item.get('id') == product_id or str(item.get('id')) == str(product_id):
                 product = item
                 break
         if product:
@@ -87,7 +95,6 @@ def products():
             return render_template('product_display.html', product=product, err=err_msg)
 
     return render_template('product_display.html', product_list=product_list, err=err_msg)
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
