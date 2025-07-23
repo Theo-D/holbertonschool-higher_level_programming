@@ -185,7 +185,22 @@ Tuples do not allow the id of the items they contain to change. But as we've see
 ## Side note about object creation and optimization in Python:
 
 Python is a flexible programming language that offers various mechanisms to optimize performance and memory usage.
-I will walk you through two of those methods of optimization: **slots** and **object interning**
+I will walk you through some of those methods of optimization, namely: **Aliases**, **slots** and **object interning**
+
+### Aliases :
+
+Python uses aliases to avoid the creation of objects with equivalent value given the following:
+
+```python
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a = 10
+>>> b = 10
+>>> a is b
+True
+>>> a == b
+True
+```
+In the above exemple an alias was used to reuse the value of `a` as the value of `b`. They are both equal and identical, which means two values occupy the same space in memory, dividing its the need for space by 2.
 
 ### __dicts__  vs __slots__ :
 
