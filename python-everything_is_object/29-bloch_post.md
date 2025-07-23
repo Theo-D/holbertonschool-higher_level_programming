@@ -239,7 +239,7 @@ As we can see above, the SlotData class has no attribute `__dict__`, this allows
 
 Object interning in Python is an optimization technique where certain immutable objects are reused rather than recreated to save memory and speed up performance.
 
-Python interns small integers in the range defined by `NSMALLNEGINTS` (-5 included) to `NSMALLPOSINTS` (257 excluded), meaning these integers are preallocated and reused throughout a program. What it means in practice is that typing `a = 10` will not create any new object, python will simply reuse allocated positive int, however `a = 257` will create a new object, the value of a being greater than `NSMALLPOSINTS`.
+Python interns small integers in the range defined by the **most used integers**: `NSMALLNEGINTS` (-5 included) to `NSMALLPOSINTS` (257 excluded), meaning these integers are preallocated and reused throughout a program. What it means in practice is that typing `a = 10` will not create any new object, python will simply reuse allocated positive int, however `a = 257` will create a new object, the value of a being greater than `NSMALLPOSINTS`.
 
 Similarly, string interning involves reusing identical immutable strings, especially short strings without spaces (less than 20 characters), strings that look like identifiers (tipycally short strings with underscores in them) or strings that are explicitly interned using sys.intern().
 
