@@ -182,7 +182,73 @@ We get a `TypeError` because tuples, being immutable objects, do not support ass
 
 Tuples do not allow the id of the items they contain to change. But as we've seen earlier, in the case of a mutable object, its value can change without affecting its identifier. that's what allows us to modify the value of an item of a list, eventhough it is contained in an immutable tuple.
 
+## Side note about object creation and optimization in Python:
+
+Python is a flexible programming language that offers various mechanisms to optimize performance and memory usage.
+I will walk you through two of those methods of optimization: **slots** and **object interning**
+
+### __dicts__  vs __slots__ :
+
+When an user defines a class, python autmatically map its datas to a dictionnary. This newly created dictionnary can be accessed through the magic method `__dict__`
+
+```python
+>>> class DictData:
+...     def __init__(self):
+...             pass
+...
+>>> dict_data = DictData()
+>>> dict_data2 = DictData()
+>>> # We dynamically create new attributes
+>>> dict_data.a = 10
+>>> dict_data2.a = 10
+>>>
+>>> print(dict_data.__dict__)
+{'a': 10}
+>>> print(dict_data2.__dict__)
+{'a': 10}
+>>> # We now test if they are two different objects (which, they are)
+>>> dict_data2.__dict__ is dict_data.__dict__
+False
+```
+
+As we can see for every instance of a class, a new dictionnary is created. On the long run and for large data sets it can become very memory-hungry and ineficient.
+That's where `__slots__` come in handy.
+
+```python
+>>> class SlotData:
+...     __slots__ = ["a", "b"]
+...
+>>> slot_data = SlotData()
+>>> slot_data.a = 10
+>>> slot_data.b = 20
+>>> slot_data.c = 30
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'SlotData' object has no attribute 'c'
+>>>
+>>> print(slot_data1.__dict__)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'SlotData' object has no attribute '__dict__'. Did you mean: '__dir__'?
+```
+
+When using slots, you can't dynamically allocate attributes to an instance outside of what was explicitely defined in `__slots__ = [ ... ]`.
+As we can see above, the SlotData class has no attribute `__dict__`, this allows us to keep in check the attribute creation and to have better control over object creation and memory consumption.
+
+### Object interning :
+
+Object interning in Python is an optimization technique where certain immutable objects are reused rather than recreated to save memory and speed up performance.
+
+Python interns small integers in the range defined by `NSMALLNEGINTS` (-5 included) to `NSMALLPOSINTS` (257 excluded), meaning these integers are preallocated and reused throughout a program. What it means in practice is that typing `a = 10` will not create any new object, python will simply reuse allocated positive int, however `a = 257` will create a new object, the value of a being greater than `NSMALLPOSINTS`.
+
+Similarly, string interning involves reusing identical immutable strings, especially short strings without spaces (less than 20 characters), strings that look like identifiers (tipycally short strings with underscores in them) or strings that are explicitly interned using sys.intern().
+
+By interning frequently used small integers and strings, Python reduces memory consumption improving efficiency overall.
+
+---
+
 Sources:
+- https://medium.com/@datasciencejourney100_83560/python-interning-for-each-data-types-397b0ba70986
 - https://realpython.com/python-mutable-vs-immutable-types/
 - https://nedbatchelder.com/text/names.html
 - python3 interpreter
